@@ -12,6 +12,11 @@ interface Props {
 
 const { title = site.title, description = site.description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
+
+// Netlify sets CONTEXT to "production", "deploy-preview" or "branch-deploy" while building.
+// Keep every non-production build (PR previews, branch deploys) out of search results.
+const context = import.meta.env.CONTEXT as string | undefined;
+const hideFromSearch = Boolean(context) && context !== 'production';
 const ogImage = new URL('/og-image.png', site.url).href;
 
 const jsonLd = {
@@ -46,6 +51,8 @@ const jsonLd = {
     <meta name="author" content={person.name} />
     <meta name="theme-color" content="#070C17" />
     <link rel="canonical" href={canonical} />
+    {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
+    {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content="website" />
