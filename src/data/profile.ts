@@ -44,18 +44,11 @@ export const hero = {
 } as const;
 
 export const about = {
-  heading: 'A backend engineer who cares about what happens in production',
+  heading: "Hi, I'm Mohammed",
   lead: "I'm a Backend Engineer with production experience designing scalable Spring Boot microservices and Kafka-driven distributed systems serving 40M+ users. I'm strong in REST API design, NoSQL data modeling, system reliability and performance optimization, and I'm used to resolving production incidents and applying API security best practices.",
   stats: [
     { value: 40, suffix: 'M+', text: 'users served by the homepage aggregation APIs I built' },
     { value: 10, suffix: '%', text: 'faster average API response time through optimized query strategies' },
-  ],
-  approachLabel: 'How I approach backend work',
-  steps: [
-    { title: 'Design the contract', text: 'REST APIs and response contracts shaped together with the Android team.' },
-    { title: 'Make it fast', text: 'Optimized query strategies and leaner responses to support frontend performance.' },
-    { title: 'Ship it safely', text: 'Feature-flag rollouts with Unleash for safe production deployments.' },
-    { title: 'Keep it running', text: 'Kafka retry handling, root cause analysis, hotfixes and better monitoring.' },
   ],
 } as const;
 
@@ -133,7 +126,7 @@ export const projects: readonly Project[] = [
       'Built with traditional ML and generative AI techniques during an academic project with Epsilon India (May – Aug 2023).',
     ],
     href: 'https://drive.google.com/file/d/13kmV9w6MXUbPGKY33VN9alGc-lD_ans3/view?usp=sharing',
-    linkLabel: 'View project →',
+    linkLabel: 'View project on Google Drive →',
   },
 ];
 

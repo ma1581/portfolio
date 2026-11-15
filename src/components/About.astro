@@ -41,34 +41,12 @@ import SectionHead from './SectionHead.astro';
       </div>
 
       <dl class="facts">
-        <dt>Languages</dt>
+        <dt>Spoken languages</dt>
         <dd>{person.languages.join(', ')}</dd>
-        <dt>Outside work</dt>
+        <dt>Hobbies &amp; interests</dt>
         <dd>{person.interests}</dd>
       </dl>
     </div>
-  </div>
-
-  <div class="approach reveal">
-    <p class="sublabel">{about.approachLabel}</p>
-    <ol class="steps">
-      {
-        about.steps.map((step, i) => (
-          <>
-            <li class="step" style={`--i:${i}`}>
-              <span class="step-n">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </li>
-            {i < about.steps.length - 1 && (
-              <li class="lane" aria-hidden="true">
-                <span class="packet" style={`--d:${i * 0.5}s`} />
-              </li>
-            )}
-          </>
-        ))
-      }
-    </ol>
   </div>
 </section>
 
@@ -156,7 +134,7 @@ import SectionHead from './SectionHead.astro';
   }
   .facts {
     display: grid;
-    grid-template-columns: 140px minmax(0, 1fr);
+    grid-template-columns: 170px minmax(0, 1fr);
     row-gap: 14px;
     font-size: 16px;
   }
@@ -164,76 +142,11 @@ import SectionHead from './SectionHead.astro';
     color: var(--dim);
   }
 
-  .approach {
-    margin-top: 96px;
-  }
-  .steps {
-    display: flex;
-    align-items: stretch;
-  }
-  .step {
-    flex: 1 1 0;
-    background: var(--panel);
-    border: 1px solid var(--line-3);
-    border-radius: 16px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    animation: stepglow 6s ease-in-out infinite;
-    animation-delay: calc(var(--i) * 1.5s);
-  }
-  .step-n {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
-  }
-  .step h3 {
-    font-family: var(--font-head);
-    font-weight: 600;
-    font-size: 22px;
-  }
-  .step p {
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--muted);
-  }
-  .lane {
-    position: relative;
-    flex: 0 0 64px;
-    align-self: center;
-    height: 2px;
-    background: var(--line);
-  }
-  .packet {
-    position: absolute;
-    top: -4px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 12px 3px rgba(94, 234, 212, 0.7);
-    animation: packet 2.2s linear infinite;
-    animation-delay: var(--d, 0s);
-  }
 
   @media (max-width: 1180px) {
     .about-grid {
       grid-template-columns: minmax(0, 1fr);
       row-gap: 48px;
-    }
-    .steps {
-      flex-direction: column;
-    }
-    .lane {
-      flex: 0 0 40px;
-      width: 2px;
-      height: 40px;
-    }
-    .packet {
-      top: auto;
-      left: -4px;
-      animation-name: packet-v;
     }
   }
   @media (max-width: 720px) {

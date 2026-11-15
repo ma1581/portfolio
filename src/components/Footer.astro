@@ -1,22 +1,82 @@
 ---
 import { person } from '../data/profile';
-const year = new Date().getFullYear();
+
+const now = new Date();
+const year = now.getFullYear();
+// Shown as "Last updated": the date this build was generated.
+const updated = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 ---
 
 <footer class="site-footer">
-  <span>© {year} {person.name} · {person.city}</span>
-  <a href="#top">Back to top ↑</a>
+  <div class="footer-top">
+    <a class="brand" href="#top">mohammed<span>.anas</span></a>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href={person.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href={person.github} target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href={`mailto:${person.email}`}>Email</a></li>
+        <li><a href="#flip">Download my card</a></li>
+      </ul>
+    </nav>
+    <a class="to-top" href="#top">Back to top ↑</a>
+  </div>
+  <p class="footer-note">
+    © {year} {person.name} · Built with Astro · Last updated {updated}
+  </p>
 </footer>
 
 <style>
   .site-footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    padding: 28px var(--pad-x) 36px;
+    padding: 36px var(--pad-x) 32px;
     border-top: 1px solid var(--line-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
     font-size: 14px;
     color: var(--dim);
+  }
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--text);
+  }
+  .brand span {
+    color: var(--accent);
+  }
+  .brand:hover {
+    text-decoration: none;
+  }
+  nav ul {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 15px;
+  }
+  nav a {
+    color: var(--text-2);
+  }
+  nav a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .footer-note {
+    padding-top: 22px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 13px;
+  }
+
+  @media (max-width: 720px) {
+    .footer-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
   }
 </style>
