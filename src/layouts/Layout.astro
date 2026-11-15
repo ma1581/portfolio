@@ -1,0 +1,72 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import { person, site } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = site.title, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL('/og-image.png', site.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  jobTitle: person.title,
+  worksFor: { '@type': 'Organization', name: person.company },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'RV College of Engineering' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: person.city,
+    addressRegion: person.region,
+    addressCountry: 'IN',
+  },
+  url: site.url,
+  image: new URL('/og-image.png', site.url).href,
+  sameAs: [person.linkedin, person.github],
+  knowsAbout: ['Java', 'Spring Boot', 'Kafka', 'MongoDB', 'MySQL', 'Microservices', 'REST APIs'],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={person.name} />
+    <meta name="theme-color" content="#070C17" />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={site.ogTitle} />
+    <meta property="og:description" content={site.ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+    <script>
+      import '../scripts/main';
+    </script>
+  </body>
+</html>

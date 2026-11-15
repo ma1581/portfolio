@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://portfolio-mohammed-anas.netlify.app/sitemap-index.xml
