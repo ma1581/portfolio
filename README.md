@@ -25,7 +25,8 @@ Requires Node 22 or newer.
 | `src/styles/global.css` | Design tokens, base styles, shared patterns and animations. |
 | `src/scripts/` | Small TypeScript modules: navigation, scroll effects, terminal typing, accordions, skills filter, digital card, contact form. |
 | `src/assets/` | Images that are optimized at build time (profile photo → WebP at the right sizes). |
-| `public/` | Files served as-is: certificates, `Mohammed-Anas.vcf` (digital contact card), favicon, link-preview image, `robots.txt`. |
+| `src/pages/resume.astro` | Print-ready one-page resume at `/resume`, built from the same data. |
+| `public/` | Files served as-is: certificates, `Mohammed-Anas-Resume.pdf`, `Mohammed-Anas.vcf` (digital contact card), favicon, link-preview image, `robots.txt`. |
 | `netlify.toml` | Netlify build command, publish directory and security / cache headers. |
 
 ## Notes
@@ -34,6 +35,14 @@ Requires Node 22 or newer.
 - The digital visiting card (Contact section) can be downloaded as a PNG (front or back, 1440×840, transparent corners), a two-page print-ready PDF, or a contact file (`public/Mohammed-Anas.vcf`). The PNG and PDF are drawn in the browser by `src/scripts/card-download.ts` from the same data as the on-screen card, so edit the card text in `src/components/Contact.astro` and `src/data/profile.ts`, and the `.vcf` file to match. The card intentionally has no phone number.
 - The sitemap (`/sitemap-index.xml`) is generated at build time.
 - Animations respect the visitor's reduced-motion setting.
+
+## Updating the resume PDF
+
+The PDF in `public/Mohammed-Anas-Resume.pdf` is exported from the `/resume` page. After changing content in `src/data/profile.ts`:
+
+1. Run `npm run dev` and open http://localhost:4321/resume
+2. Print (Ctrl/Cmd + P) → destination **Save as PDF**, paper **A4**, margins **Default**, tick **Background graphics**
+3. Save it over `public/Mohammed-Anas-Resume.pdf`
 
 ## Deploy
 
