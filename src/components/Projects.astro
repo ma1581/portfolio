@@ -15,23 +15,27 @@ import SectionHead from './SectionHead.astro';
             .filter((p) => p.group === group.id)
             .map((p) => (
               <article class="card tilt reveal">
-                <p class="meta">{p.meta}</p>
+                {p.meta && <p class="meta">{p.meta}</p>}
                 <h3>{p.title}</h3>
                 <p class="blurb">{p.blurb}</p>
                 <p class="stack">{p.stack}</p>
-                <button class="more-btn" type="button" aria-expanded="false" aria-controls={`proj-${p.id}`}>
-                  <span class="more-label">View details</span>
-                </button>
-                <div class="acc-panel" id={`proj-${p.id}`}>
-                  <div class="acc-inner">
-                    <ul class="bullets">{p.details.map((d) => <li>{d}</li>)}</ul>
-                    {p.href && (
-                      <a class="link-arrow" href={p.href} target="_blank" rel="noopener">
-                        {p.linkLabel}
-                      </a>
-                    )}
-                  </div>
-                </div>
+                {p.details && (
+                  <>
+                    <button class="more-btn" type="button" aria-expanded="false" aria-controls={`proj-${p.id}`}>
+                      <span class="more-label">View details</span>
+                    </button>
+                    <div class="acc-panel" id={`proj-${p.id}`}>
+                      <div class="acc-inner">
+                        <ul class="bullets">{p.details.map((d) => <li>{d}</li>)}</ul>
+                        {p.href && (
+                          <a class="link-arrow" href={p.href} target="_blank" rel="noopener">
+                            {p.linkLabel}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
               </article>
             ))}
         </div>

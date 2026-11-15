@@ -1,5 +1,5 @@
 ---
-import { person, hero, site } from '../data/profile';
+import { person, hero } from '../data/profile';
 
 const terminalSummary = `Terminal summary: ${hero.terminal.map((l) => l.out).join('; ')}.`;
 ---
@@ -28,7 +28,6 @@ const terminalSummary = `Terminal summary: ${hero.terminal.map((l) => l.out).joi
     <p class="hero-lead rise" style="--d:.5s">{hero.lead}</p>
     <div class="hero-actions rise" style="--d:.65s">
       <a class="btn btn-primary" href="#contact">Get in touch</a>
-      <a class="btn btn-ghost" href={site.resumePdf} download>Download resume</a>
       <a class="link-arrow" href="#flip">Save my card ↓</a>
     </div>
   </div>

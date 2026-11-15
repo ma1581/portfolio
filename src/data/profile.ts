@@ -72,30 +72,15 @@ export const experience: readonly Role[] = [
     id: 'sde2',
     title: 'SDE - II · Changejar Technologies',
     meta: 'Bengaluru, Karnataka · Oct 2024 – Present · promoted from SDE - I',
-    open: true,
     groups: [
       {
-        heading: 'Recent work',
         bullets: [
-          'Built the backend for redeeming digital silver as physical coins, across five services: checkout, orders, delivery integration, refunds and order history. Released to production in September 2026.',
-          'Brought daily savings and autopay to a second product, silver, on top of the existing gold stack: mandate lifecycle, UPI app intents, pause and resume. Closed around 20 edge cases found in QA before launch.',
-          'Designed and built the backend for a server-driven home screen: card services, cohort-based caching, Prometheus metrics per section, and iOS/Android release gating.',
-          'Delivered a revamp of KYC prompts end to end, including narratives, bottom sheets and banners, with iOS and Android parity.',
-          'Detected autopay mandates cancelled outside the app and added WhatsApp re-engagement through a new vendor integration.',
-          'Hardened the renewal retry pipeline: state-aware skipping, a priority retry topic and S3 audit logs. Fixed a status overwrite and a double-debit case.',
-          'Wrote design docs, API contracts, sequence diagrams, RCAs and test cases (100+ pages), including designs for multi-tenant user registration and authentication, and for silver delivery.',
-          'Optimized MongoDB compound indexes for the subscriptions collection after a schema extension.',
-        ],
-      },
-      {
-        heading: 'Earlier, as SDE - I',
-        bullets: [
-          'Designed and implemented Spring Boot APIs for homepage aggregation, serving 40M+ users and reducing average API response time by 10% through optimized query strategies.',
-          'Collaborated with the Android team to optimize API response contracts and reduce frontend latency.',
-          'Resolved production incidents through root cause analysis, hotfixes and improved monitoring, and wrote more than a dozen RCAs.',
-          'Fixed payment-callback and gold-transaction correctness issues, and added jobs to re-check and retry pending transactions.',
-          'Automated Meta ad budget workflows with a rule-based ad management service.',
-          'Rolled out features behind Unleash feature flags and ran experiments on savings entry points and withdrawal prompts.',
+          'Build and maintain Java and Spring Boot services for autopay, payments, KYC and the home screen of a digital gold and silver savings app.',
+          'Built the backend for redeeming digital silver as physical coins, and for daily savings and autopay on a second product, silver.',
+          'Designed a server-driven home screen backend with cohort-based caching and per-section metrics.',
+          'Improved the autopay renewal and retry pipeline, and added detection of mandates cancelled outside the app.',
+          'Designed and implemented Spring Boot APIs for homepage aggregation serving 40M+ users, reducing average response time by 10% through optimized queries.',
+          'Work with the Android and iOS teams on API contracts, and write design docs, sequence diagrams and root cause analyses.',
         ],
       },
     ],
@@ -109,8 +94,7 @@ export const experience: readonly Role[] = [
         bullets: [
           'Built REST APIs using Spring Boot and JPA.',
           'Implemented business rules using Drools.',
-          'Improved reliability of loan-offer generation on a bank-data pipeline: alerts for slow callbacks, a distributed lock against duplicate offers, and handling of stale or failed callbacks.',
-          'Debugged production issues during on-call rotation.',
+          'Improved reliability of loan-offer generation on a bank-data pipeline, and debugged production issues while on call.',
         ],
       },
     ],
@@ -120,11 +104,11 @@ export const experience: readonly Role[] = [
 export interface Project {
   id: string;
   group: 'work' | 'personal';
-  meta: string;
+  meta?: string;
   title: string;
   blurb: string;
   stack: string;
-  details: readonly string[];
+  details?: readonly string[];
   href?: string;
   linkLabel?: string;
 }
@@ -138,54 +122,30 @@ export const projects: readonly Project[] = [
   {
     id: 'silver-delivery',
     group: 'work',
-    meta: '2026',
     title: 'Physical silver coin delivery',
-    blurb: 'Lets users redeem their digital silver as physical coins.',
-    stack: 'Java · Spring Boot · NestJS · PostgreSQL · MongoDB · SQS',
-    details: [
-      'Orchestrated checkout, the sell and extra-charge flow, order creation, callbacks, refunds and order history across five services.',
-      'Integrated order registration and the delivery pipeline, and added per-day order limits and idempotency keys.',
-      'Released to production in September 2026, followed by hardening work on limits and state refetching.',
-    ],
+    blurb: 'Backend for redeeming digital silver as physical coins.',
+    stack: 'Java · Spring Boot · NestJS · PostgreSQL · SQS',
   },
   {
     id: 'silver-savings',
     group: 'work',
-    meta: '2026',
     title: 'Silver daily savings and autopay',
-    blurb: 'Brought daily savings and autopay to a new product on top of the existing gold stack.',
+    blurb: 'Daily savings and autopay for a new product, built on the existing gold stack.',
     stack: 'Java · Spring Boot · Kafka · MongoDB',
-    details: [
-      'Built subscription setup, update and cancellation, the scheduled round-off lifecycle, and mandate max-amount logic.',
-      'Added UPI app intents for the major payment apps, plus pause and resume handling.',
-      'Shipped the daily savings update flow to production in May 2026 and closed around 20 edge cases found in QA.',
-    ],
   },
   {
     id: 'home-screen',
     group: 'work',
-    meta: '2025 – 2026',
     title: 'Server-driven home screen',
-    blurb: 'A card-based home screen backend that can personalise by user cohort and run experiments quickly.',
+    blurb: 'A card-based home screen backend that personalises by user cohort.',
     stack: 'Java · Spring Boot · Spring Cloud Config · Prometheus',
-    details: [
-      'Built the card services, cohort-based cache logic and per-section Prometheus metrics.',
-      'Added a mock-card harness for QA, config-driven copy, and iOS/Android version gating.',
-      'Supported a later design revamp of the home screen.',
-    ],
   },
   {
     id: 'autopay-reliability',
     group: 'work',
-    meta: '2025 – 2026',
     title: 'Autopay reliability',
     blurb: 'Retries, cancellations and status handling for recurring savings payments.',
     stack: 'Java · Spring Boot · Kafka · AWS S3 · Python',
-    details: [
-      'Reworked renewal retries: skipping on terminal states, a priority retry topic, and compressed S3 audit logs of each attempt.',
-      'Fixed a status overwrite and a double-debit case after subscription changes.',
-      'Detected mandates cancelled outside the app and triggered WhatsApp re-engagement.',
-    ],
   },
   {
     id: 'poll',
@@ -214,8 +174,8 @@ export const projects: readonly Project[] = [
       'Provides business inference and a view of public opinion in the digital world.',
       'Built with traditional ML and generative AI techniques during an academic project with Epsilon India (May – Aug 2023).',
     ],
-    href: 'https://drive.google.com/file/d/13kmV9w6MXUbPGKY33VN9alGc-lD_ans3/view?usp=sharing',
-    linkLabel: 'View project on Google Drive →',
+    href: '/certificates/epsilon-sentiment-analysis.pdf',
+    linkLabel: 'View Epsilon India certificate →',
   },
 ];
 
@@ -312,13 +272,11 @@ export const resume = {
   summary:
     'Backend Engineer at Changejar Technologies since 2024, working on Java and Spring Boot services for a digital gold and silver savings app: autopay and payments, KYC and home screen APIs. Also work in Python and TypeScript services. I care about clear API contracts, careful failure handling and good documentation.',
   sde2Bullets: [
-    'Built the backend for redeeming digital silver as physical coins across five services (checkout, orders, delivery integration, refunds). Released to production in September 2026.',
-    'Brought daily savings and autopay to a second product, silver: mandate lifecycle, UPI app intents, pause and resume. Closed around 20 edge cases found in QA.',
-    'Designed and built the backend for a server-driven home screen with card services, cohort-based caching, Prometheus metrics and iOS/Android release gating.',
-    'Delivered a revamp of KYC prompts end to end with iOS and Android parity.',
-    'Hardened the renewal retry pipeline (state-aware skipping, priority retry topic, S3 audit logs) and fixed a status overwrite and a double-debit case.',
-    'Detected autopay mandates cancelled outside the app and added WhatsApp re-engagement through a new vendor integration.',
+    'Build and maintain Java and Spring Boot services for autopay, payments, KYC and the home screen of a digital gold and silver savings app.',
+    'Built the backend for redeeming digital silver as physical coins, and for daily savings and autopay on a second product, silver.',
+    'Designed a server-driven home screen backend with cohort-based caching and per-section metrics.',
+    'Improved the autopay renewal and retry pipeline, and added detection of mandates cancelled outside the app.',
     'Designed and implemented Spring Boot APIs for homepage aggregation serving 40M+ users, reducing average response time by 10% through optimized queries.',
-    'Wrote 100+ pages of design docs, API contracts, RCAs and test cases; optimized MongoDB compound indexes for the subscriptions collection.',
+    'Work with the Android and iOS teams on API contracts, and write design docs, sequence diagrams and root cause analyses.',
   ],
 } as const;

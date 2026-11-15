@@ -1,15 +1,23 @@
 import { $, $$ } from './dom';
 
-/** Experience accordion. */
+/** Experience accordion: closed by default, and only one item can be open at a time. */
 function initAccordion(): void {
-  $$<HTMLButtonElement>('.acc-btn').forEach((btn) => {
-    const item = btn.closest('.acc-item');
-    const panel = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+  const buttons = $$<HTMLButtonElement>('.acc-btn');
+
+  const setOpen = (btn: HTMLButtonElement, open: boolean): void => {
+    btn.setAttribute('aria-expanded', String(open));
+    btn.closest('.acc-item')?.classList.toggle('is-open', open);
+    document.getElementById(btn.getAttribute('aria-controls') ?? '')?.classList.toggle('is-open', open);
+  };
+
+  buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const open = btn.getAttribute('aria-expanded') !== 'true';
-      btn.setAttribute('aria-expanded', String(open));
-      item?.classList.toggle('is-open', open);
-      panel?.classList.toggle('is-open', open);
+      if (open) {
+        const group = btn.closest('.acc');
+        buttons.filter((other) => other !== btn && other.closest('.acc') === group).forEach((other) => setOpen(other, false));
+      }
+      setOpen(btn, open);
     });
   });
 }
