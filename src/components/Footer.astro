@@ -1,0 +1,22 @@
+---
+import { person } from '../data/profile';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <span>© {year} {person.name} · {person.city}</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 28px var(--pad-x) 36px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 14px;
+    color: var(--dim);
+  }
+</style>

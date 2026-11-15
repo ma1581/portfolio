@@ -1,0 +1,471 @@
+/* ==========================================================================
+   Global styles: design tokens, base, shared patterns, keyframes.
+   Component-specific styles live inside each component.
+   ========================================================================== */
+
+:root {
+  --bg: #070c17;
+  --bg-2: #0a1222;
+  --panel: #0c1528;
+  --line: #1f2e4a;
+  --line-2: #28364d;
+  --line-3: #2d4268;
+  --line-soft: #16213a;
+  --text: #e6edf5;
+  --text-2: #c7d2e0;
+  --muted: #a9b6c7;
+  --dim: #94a3b8;
+  --accent: #5eead4;
+  --accent-ink: #07101c;
+  --danger: #fca5a5;
+
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-head: 'Space Grotesk Variable', 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --pad-x: 120px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h1,
+h2,
+h3,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 12px;
+  text-decoration: none;
+}
+
+/* ---------- Buttons & links ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-primary:hover {
+  box-shadow: 0 10px 36px rgba(94, 234, 212, 0.4);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  animation: sheen 3.4s ease-in-out infinite;
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line-3);
+  color: var(--text);
+  font-weight: 500;
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+}
+.link-arrow {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  position: relative;
+  padding: 110px var(--pad-x);
+}
+.section-line {
+  border-top: 1px solid var(--line-soft);
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.h2 {
+  position: relative;
+  display: inline-block;
+  max-width: 900px;
+  margin-bottom: 56px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.2;
+}
+.h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -14px;
+  width: 56px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: glowline 3s ease-in-out infinite;
+}
+.section-sub {
+  font-size: 18px;
+  color: var(--dim);
+  margin: -26px 0 56px;
+}
+.sublabel {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--dim);
+  margin-bottom: 28px;
+}
+
+/* ---------- Reveal on scroll (only when JS is available) ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), border-color 0.25s, box-shadow 0.25s;
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.rise {
+  opacity: 0;
+  animation: rise 0.9s var(--ease) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--text);
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--dim);
+}
+.tilt {
+  transition: transform 0.35s var(--ease), border-color 0.25s, box-shadow 0.25s;
+}
+.tilt:hover,
+.js .reveal.tilt.in:hover {
+  transform: perspective(900px) rotateX(2.5deg) rotateY(-3.5deg) translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 24px 60px rgba(94, 234, 212, 0.12);
+  text-decoration: none;
+}
+
+/* ---------- Expandable panel (used by experience + project cards) ---------- */
+.acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+.acc-panel > .acc-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.acc-panel.is-open {
+  grid-template-rows: 1fr;
+}
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 20px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-2);
+  list-style: disc;
+}
+.bullets li::marker {
+  color: var(--accent);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes drift1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(70px, -50px) scale(1.15);
+  }
+}
+@keyframes drift2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-80px, 40px) scale(0.9);
+  }
+}
+@keyframes drift3 {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(40px, 60px);
+  }
+}
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes packet {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 10px);
+    opacity: 0;
+  }
+}
+@keyframes packet-v {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 10px);
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(94, 234, 212, 0);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes sheen {
+  0% {
+    left: -60%;
+  }
+  55%,
+  100% {
+    left: 130%;
+  }
+}
+@keyframes scan {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+@keyframes glowline {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes stepglow {
+  0%,
+  100% {
+    border-color: var(--line-3);
+  }
+  50% {
+    border-color: var(--accent);
+  }
+}
+
+/* ---------- Responsive tokens ---------- */
+@media (max-width: 1180px) {
+  :root {
+    --pad-x: 56px;
+  }
+}
+@media (max-width: 720px) {
+  :root {
+    --pad-x: 20px;
+  }
+  .section {
+    padding: 72px var(--pad-x);
+  }
+  .h2 {
+    margin-bottom: 44px;
+  }
+  .section-sub {
+    margin: -20px 0 40px;
+    font-size: 16px;
+  }
+  .bullets {
+    font-size: 15px;
+  }
+  .card {
+    padding: 22px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .rise {
+    opacity: 1 !important;
+  }
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
