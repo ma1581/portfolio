@@ -1,7 +1,25 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import profile from '../assets/profile.jpg';
 import { person, site } from '../data/profile';
+
+// Data the browser uses to draw the downloadable card (PNG / PDF), kept in sync with the card shown below.
+const cardPhoto = await getImage({ src: profile, width: 600, format: 'webp', quality: 88 });
+const cardData = {
+  name: person.name,
+  title: person.title,
+  company: person.company,
+  frontLeft: `${person.city}, India`,
+  frontRight: 'Java · Spring Boot · Kafka',
+  backLines: [
+    person.email,
+    person.linkedinLabel,
+    person.githubLabel,
+    `${person.city}, ${person.region}, ${person.country}`,
+  ],
+  photo: cardPhoto.src,
+  fileBase: person.name.replace(/\s+/g, '-'),
+};
 ---
 
 <section id="contact" class="section section-line contact">
@@ -41,11 +59,38 @@ import { person, site } from '../data/profile';
       </div>
 
       <div class="card-actions">
-        <a class="btn btn-primary" href="/Mohammed-Anas.vcf" download>Save contact card</a>
+        <button class="btn btn-primary" type="button" id="dl-btn" aria-expanded="false" aria-controls="dl-menu">
+          Download card <span aria-hidden="true">▾</span>
+        </button>
         <button class="btn btn-ghost" type="button" id="flip-btn" aria-pressed="false">Flip card ↻</button>
         <button class="btn btn-ghost" type="button" id="copy-btn" data-email={person.email}>Copy email</button>
       </div>
-      <p class="fineprint">Saves a contact file (.vcf) that opens in your phone or address book.</p>
+      <ul class="dl-menu" id="dl-menu" hidden>
+        <li>
+          <button type="button" data-dl="png-front">
+            <strong>PNG image · front</strong><span>1440 × 840, transparent corners. Great for sharing.</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" data-dl="png-back">
+            <strong>PNG image · back</strong><span>The contact details side.</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" data-dl="pdf">
+            <strong>PDF · front + back</strong><span>Two pages at business-card size, ready to print.</span>
+          </button>
+        </li>
+        <li>
+          <a href="/Mohammed-Anas.vcf" download data-dl="vcf">
+            <strong>Contact file · .vcf</strong><span>Adds me to your phone or address book.</span>
+          </a>
+        </li>
+      </ul>
+      <p class="fineprint" id="dl-status" role="status" aria-live="polite">
+        Download the card as an image or PDF, or save it straight to your contacts.
+      </p>
+      <script type="application/json" id="card-data" set:html={JSON.stringify(cardData)} />
 
       <ul class="social">
         <li><a href={person.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
@@ -231,6 +276,63 @@ import { person, site } from '../data/profile';
     color: var(--dim);
     max-width: 480px;
     margin-top: -10px;
+    min-height: 2.6em;
+  }
+  .fineprint.is-error {
+    color: var(--danger);
+  }
+
+  /* download menu */
+  #dl-btn span {
+    margin-left: 8px;
+  }
+  .dl-menu {
+    width: 100%;
+    max-width: 480px;
+    margin-top: -12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: #0c1528;
+    border: 1px solid var(--line-3);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+  .dl-menu[hidden] {
+    display: none;
+  }
+  .dl-menu :is(button, a) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 14px;
+    background: none;
+    border: 0;
+    border-radius: 10px;
+    text-align: left;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .dl-menu :is(button, a):hover,
+  .dl-menu :is(button, a):focus-visible {
+    background: rgba(94, 234, 212, 0.1);
+    text-decoration: none;
+  }
+  .dl-menu strong {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .dl-menu span {
+    font-size: 13px;
+    color: var(--dim);
+    line-height: 1.4;
+  }
+  .dl-menu [aria-busy='true'] {
+    opacity: 0.6;
+    cursor: progress;
   }
   .social {
     display: flex;
