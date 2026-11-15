@@ -12,6 +12,8 @@ export const site = {
   ogDescription: 'Java and Spring Boot services for a digital gold and silver savings app. Based in Bengaluru.',
   formEndpoint: 'https://formspree.io/f/xayrqawk',
   resumePdf: '/Mohammed-Anas-Resume.pdf',
+  /** Google Search Console "HTML tag" verification: paste only the content value here. Empty = no tag. */
+  googleVerification: '',
 } as const;
 
 export const person = {
