@@ -34,7 +34,6 @@ Requires Node 22 or newer.
 - The digital card is `public/Mohammed-Anas.vcf`. Update it together with the contact details in `src/data/profile.ts`. It intentionally has no phone number.
 - The sitemap (`/sitemap-index.xml`) is generated at build time.
 - Animations respect the visitor's reduced-motion setting.
-- `created_assest/` holds assets from the previous version of the site and is not used by the build.
 
 ## Deploy
 
