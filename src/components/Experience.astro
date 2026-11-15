@@ -4,7 +4,7 @@ import SectionHead from './SectionHead.astro';
 ---
 
 <section id="experience" class="section section-line">
-  <SectionHead label="02 / Experience" title="Where I've worked" sub="Open a role to see what I built and fixed there." />
+  <SectionHead label="02 / Experience" title="Where I've worked" />
 
   <div class="acc reveal">
     {
@@ -19,9 +19,14 @@ import SectionHead from './SectionHead.astro';
           </h3>
           <div class:list={['acc-panel', { 'is-open': role.open }]} id={`exp-${role.id}`}>
             <div class="acc-inner">
-              <ul class="bullets">
-                {role.bullets.map((b) => <li>{b}</li>)}
-              </ul>
+              {role.groups.map((group) => (
+                <div class="group">
+                  {group.heading && <p class="group-heading">{group.heading}</p>}
+                  <ul class="bullets">
+                    {group.bullets.map((b) => <li>{b}</li>)}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -97,6 +102,15 @@ import SectionHead from './SectionHead.astro';
   }
   .acc-inner {
     padding: 0 32px;
+  }
+  .group + .group {
+    margin-top: 26px;
+  }
+  .group-heading {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--dim);
+    margin-bottom: 14px;
   }
   .acc-item.is-open .acc-inner {
     padding-bottom: 30px;

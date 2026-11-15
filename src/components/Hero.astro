@@ -28,8 +28,7 @@ const terminalSummary = `Terminal summary: ${hero.terminal.map((l) => l.out).joi
     <p class="hero-lead rise" style="--d:.5s">{hero.lead}</p>
     <div class="hero-actions rise" style="--d:.65s">
       <a class="btn btn-primary" href="#contact">Get in touch</a>
-      <a class="btn btn-ghost" href="#flip">Download my card</a>
-      <a class="link-arrow" href="#experience">View experience ↓</a>
+      <a class="link-arrow" href="#flip">Download my card ↓</a>
     </div>
   </div>
 
@@ -42,7 +41,7 @@ const terminalSummary = `Terminal summary: ${hero.terminal.map((l) => l.out).joi
       <div class="scan"></div>
       {hero.terminal.map((l) => <div class="term-line" data-cmd={l.cmd} data-out={l.out} />)}
       <div class="term-prompt"><span class="p">$ </span><span class="cursor"></span></div>
-      <button class="term-replay" type="button" hidden>↻ replay</button>
+      <button class="term-replay" type="button" hidden>↻ Replay</button>
     </div>
   </div>
 </section>

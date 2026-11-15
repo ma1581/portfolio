@@ -4,6 +4,7 @@ import { initTerminal } from './terminal';
 import { initInteractions } from './interactions';
 import { initContactForm } from './contact-form';
 import { initCardDownload } from './card-download';
+import { initFloatingResume } from './floating-resume';
 
 initNavigation();
 initEffects();
@@ -11,3 +12,4 @@ initTerminal();
 initInteractions();
 initContactForm();
 initCardDownload();
+initFloatingResume();

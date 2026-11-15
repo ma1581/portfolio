@@ -7,15 +7,17 @@ export const site = {
   url: 'https://portfolio-mohammed-anas.netlify.app',
   title: 'Mohammed Anas | Backend Engineer – Java, Spring Boot, Kafka',
   description:
-    'Mohammed Anas is a Backend Engineer in Bengaluru building scalable Spring Boot microservices and Kafka-driven systems used by 40M+ people.',
+    'Mohammed Anas is a Backend Engineer in Bengaluru working on Java and Spring Boot services for a digital gold and silver savings app.',
   ogTitle: 'Mohammed Anas | Backend Engineer',
-  ogDescription: 'Spring Boot microservices and Kafka-driven systems used by 40M+ people. Based in Bengaluru.',
+  ogDescription: 'Java and Spring Boot services for a digital gold and silver savings app. Based in Bengaluru.',
   formEndpoint: 'https://formspree.io/f/xayrqawk',
+  resumePdf: '/Mohammed-Anas-Resume.pdf',
 } as const;
 
 export const person = {
   name: 'Mohammed Anas',
   title: 'Backend Engineer',
+  level: 'SDE II',
   company: 'Changejar Technologies',
   companyUrl: 'https://www.linkedin.com/company/jarapp/',
   city: 'Bengaluru',
@@ -24,91 +26,130 @@ export const person = {
   email: 'mohammedanas1581@gmail.com',
   linkedin: 'https://linkedin.com/in/moham-anas',
   linkedinLabel: 'linkedin.com/in/moham-anas',
-  github: 'https://github.com/mohammedanas089',
-  githubLabel: 'github.com/mohammedanas089',
+  github: 'https://github.com/ma1581',
+  githubLabel: 'github.com/ma1581',
   languages: ['Tamil', 'English', 'Kannada', 'Hindi'],
   interests: 'Podcasts, movies & series, anime, songs and novels',
 } as const;
 
 export const hero = {
-  lead: 'Backend Engineer at Changejar Technologies, designing Spring Boot microservices and Kafka-driven systems used by 40M+ people.',
+  lead: 'Backend Engineer (SDE II) at Changejar Technologies, working on Java and Spring Boot services for a digital gold and silver savings app.',
   /** Phrases that rotate after "I build". */
-  roles: ['scalable Spring Boot APIs', 'Kafka-driven systems', 'reliable microservices', 'fast, secure REST APIs'],
+  roles: ['Spring Boot services', 'payments and autopay flows', 'Kafka consumers', 'REST APIs'],
   terminal: [
     { cmd: 'whoami', out: 'Mohammed Anas · Backend Engineer' },
     { cmd: 'pwd', out: 'Bengaluru, Karnataka, India' },
-    { cmd: 'cat stack.txt', out: 'Java · Spring Boot · Kafka · MongoDB' },
-    { cmd: 'cat reach.txt', out: '40M+ users on the APIs I built' },
-    { cmd: 'echo $STATUS', out: 'open to conversations' },
+    { cmd: 'cat stack.txt', out: 'Java · Spring Boot · Kafka · MongoDB · PostgreSQL' },
+    { cmd: 'cat focus.txt', out: 'Payments, autopay, KYC and home screen APIs' },
+    { cmd: 'echo $COMPANY', out: 'Changejar Technologies' },
   ],
 } as const;
 
 export const about = {
-  heading: 'A backend engineer who cares about what happens in production',
-  lead: "I'm a Backend Engineer with production experience designing scalable Spring Boot microservices and Kafka-driven distributed systems serving 40M+ users. I'm strong in REST API design, NoSQL data modeling, system reliability and performance optimization, and I'm used to resolving production incidents and applying API security best practices.",
+  heading: "Hi, I'm Mohammed",
+  lead: "I'm a backend engineer at Changejar Technologies, where I work on a digital gold and silver savings app: autopay and payments, KYC, and the services behind the home screen. I mostly write Java and Spring Boot, and I also work in Python and TypeScript services. I like clear API contracts, careful handling of failures and retries, and writing things down: design docs, sequence diagrams and root cause analyses.",
   stats: [
-    { value: 40, suffix: 'M+', text: 'users served by the homepage aggregation APIs I built' },
-    { value: 10, suffix: '%', text: 'faster average API response time through optimized query strategies' },
-  ],
-  approachLabel: 'How I approach backend work',
-  steps: [
-    { title: 'Design the contract', text: 'REST APIs and response contracts shaped together with the Android team.' },
-    { title: 'Make it fast', text: 'Optimized query strategies and leaner responses to support frontend performance.' },
-    { title: 'Ship it safely', text: 'Feature-flag rollouts with Unleash for safe production deployments.' },
-    { title: 'Keep it running', text: 'Kafka retry handling, root cause analysis, hotfixes and better monitoring.' },
+    { value: 40, suffix: 'M+', text: 'Users reached by the homepage APIs I worked on' },
+    { value: 2, suffix: '+', text: 'Years building backend services in production' },
   ],
 } as const;
+
+export interface BulletGroup {
+  heading?: string;
+  bullets: readonly string[];
+}
 
 export interface Role {
   id: string;
   title: string;
   meta: string;
-  bullets: readonly string[];
+  groups: readonly BulletGroup[];
   open?: boolean;
 }
 
 export const experience: readonly Role[] = [
   {
-    id: 'sde',
-    title: 'SDE - I · Changejar Technologies',
+    id: 'sde2',
+    title: 'SDE II · Changejar Technologies',
     meta: 'Bengaluru, Karnataka · Oct 2024 – Present',
-    open: true,
-    bullets: [
-      'Designed and implemented Spring Boot APIs for homepage aggregation, serving 40M+ users and reducing average API response time by 10% through optimized query strategies.',
-      'Collaborated with the Android team to optimize API response contracts and reduce frontend latency.',
-      'Resolved production incidents through root cause analysis (RCA), hotfixes and improved monitoring to prevent recurrence.',
-      'Implemented robust Kafka consumer retry and error-handling mechanisms, reducing message processing failures and improving reliability.',
-      'Integrated feature flag rollout with Unleash for safe production deployments.',
-      'Integrated Meta Marketing APIs to automate ad budget workflows and improve campaign allocation efficiency.',
-      'Optimized backend response handling to support improved frontend performance metrics.',
+    groups: [
+      {
+        bullets: [
+          'Build and maintain Java and Spring Boot services for autopay, payments, KYC and the home screen of a digital gold and silver savings app.',
+          'Built the backend for redeeming digital silver as physical coins, and for daily savings and autopay on a second product, silver.',
+          'Designed a server-driven home screen backend with cohort-based caching and per-section metrics.',
+          'Improved the autopay renewal and retry pipeline, and added detection of mandates cancelled outside the app.',
+          'Designed and implemented Spring Boot APIs for homepage aggregation serving 40M+ users, reducing average response time by 10% through optimized queries.',
+          'Work with the Android and iOS teams on API contracts, and write design docs, sequence diagrams and root cause analyses.',
+        ],
+      },
     ],
   },
   {
     id: 'intern',
-    title: 'Backend Developer Intern',
-    meta: 'Mar 2024 – Sep 2024',
-    bullets: [
-      'Built REST APIs using Spring Boot and JPA.',
-      'Implemented business rules using Drools.',
-      'Debugged production issues during on-call rotation.',
+    title: 'Backend Developer Intern · Changejar Technologies',
+    meta: 'Bengaluru, Karnataka · Mar 2024 – Sep 2024',
+    groups: [
+      {
+        bullets: [
+          'Built REST APIs using Spring Boot and JPA.',
+          'Implemented business rules using Drools.',
+          'Improved reliability of loan-offer generation on a bank-data pipeline, and debugged production issues while on call.',
+        ],
+      },
     ],
   },
 ];
 
 export interface Project {
   id: string;
-  meta: string;
+  group: 'work' | 'personal';
+  meta?: string;
   title: string;
   blurb: string;
   stack: string;
-  details: readonly string[];
-  href: string;
-  linkLabel: string;
+  details?: readonly string[];
+  href?: string;
+  linkLabel?: string;
 }
+
+export const projectGroups = [
+  { id: 'work', label: 'At Changejar' },
+  { id: 'personal', label: 'Personal & academic' },
+] as const;
 
 export const projects: readonly Project[] = [
   {
+    id: 'silver-delivery',
+    group: 'work',
+    title: 'Physical Silver Coin Delivery',
+    blurb: 'Backend for redeeming digital silver as physical coins.',
+    stack: 'Java · Spring Boot · NestJS · PostgreSQL · SQS',
+  },
+  {
+    id: 'silver-savings',
+    group: 'work',
+    title: 'Silver Daily Savings and Autopay',
+    blurb: 'Daily savings and autopay for a new product, built on the existing gold stack.',
+    stack: 'Java · Spring Boot · Kafka · MongoDB',
+  },
+  {
+    id: 'home-screen',
+    group: 'work',
+    title: 'Server-Driven Home Screen',
+    blurb: 'A card-based home screen backend that personalises by user cohort.',
+    stack: 'Java · Spring Boot · Spring Cloud Config · Prometheus',
+  },
+  {
+    id: 'autopay-reliability',
+    group: 'work',
+    title: 'Autopay Reliability',
+    blurb: 'Retries, cancellations and status handling for recurring savings payments.',
+    stack: 'Java · Spring Boot · Kafka · AWS S3 · Python',
+  },
+  {
     id: 'poll',
+    group: 'personal',
     meta: '2024',
     title: 'Polling Application',
     blurb: 'RESTful polling API with pagination and vote consistency guarantees.',
@@ -123,6 +164,7 @@ export const projects: readonly Project[] = [
   },
   {
     id: 'sent',
+    group: 'personal',
     meta: '2023 · Epsilon India',
     title: 'Real-Time Sentiment Analysis',
     blurb: 'Near real-time interactive dashboard to analyse social media data.',
@@ -132,8 +174,8 @@ export const projects: readonly Project[] = [
       'Provides business inference and a view of public opinion in the digital world.',
       'Built with traditional ML and generative AI techniques during an academic project with Epsilon India (May – Aug 2023).',
     ],
-    href: 'https://drive.google.com/file/d/13kmV9w6MXUbPGKY33VN9alGc-lD_ans3/view?usp=sharing',
-    linkLabel: 'View project →',
+    href: '/certificates/epsilon-sentiment-analysis.pdf',
+    linkLabel: 'View Epsilon India certificate →',
   },
 ];
 
@@ -142,8 +184,8 @@ export const skillCategories = [
   { id: 'fw', label: 'Frameworks' },
   { id: 'db', label: 'Databases' },
   { id: 'msg', label: 'Messaging' },
-  { id: 'devops', label: 'DevOps' },
-  { id: 'core', label: 'Fundamentals' },
+  { id: 'devops', label: 'DevOps & cloud' },
+  { id: 'core', label: 'Practices & domain' },
 ] as const;
 
 export type SkillCategoryId = (typeof skillCategories)[number]['id'];
@@ -151,18 +193,36 @@ export type SkillCategoryId = (typeof skillCategories)[number]['id'];
 export const skills: readonly { name: string; cat: SkillCategoryId }[] = [
   { name: 'Java', cat: 'lang' },
   { name: 'Python', cat: 'lang' },
+  { name: 'TypeScript', cat: 'lang' },
   { name: 'Spring Boot', cat: 'fw' },
+  { name: 'Spring Cloud Config', cat: 'fw' },
   { name: 'JPA / Hibernate', cat: 'fw' },
   { name: 'JUnit 5', cat: 'fw' },
+  { name: 'Django', cat: 'fw' },
+  { name: 'Celery', cat: 'fw' },
+  { name: 'NestJS', cat: 'fw' },
   { name: 'MongoDB', cat: 'db' },
+  { name: 'PostgreSQL', cat: 'db' },
   { name: 'MySQL', cat: 'db' },
+  { name: 'Redis', cat: 'db' },
+  { name: 'ScyllaDB', cat: 'db' },
   { name: 'Kafka', cat: 'msg' },
+  { name: 'AWS SQS', cat: 'msg' },
   { name: 'Docker', cat: 'devops' },
   { name: 'Git', cat: 'devops' },
   { name: 'Linux', cat: 'devops' },
-  { name: 'Network fundamentals', cat: 'core' },
+  { name: 'Jenkins', cat: 'devops' },
+  { name: 'AWS (EKS, S3)', cat: 'devops' },
+  { name: 'Prometheus', cat: 'devops' },
+  { name: 'Grafana', cat: 'devops' },
+  { name: 'Vault', cat: 'devops' },
   { name: 'REST API design', cat: 'core' },
   { name: 'NoSQL data modeling', cat: 'core' },
+  { name: 'Network fundamentals', cat: 'core' },
+  { name: 'Idempotency and retries', cat: 'core' },
+  { name: 'Root cause analysis', cat: 'core' },
+  { name: 'UPI autopay and payments', cat: 'core' },
+  { name: 'Feature flags (Unleash)', cat: 'core' },
 ];
 
 export const education = {
@@ -206,3 +266,17 @@ export const nav = [
   { href: '#skills', label: 'Skills' },
   { href: '#education', label: 'Education' },
 ] as const;
+
+/** One-page resume (shown at /resume and exported to the PDF). Curated, so it stays short. */
+export const resume = {
+  summary:
+    'Backend Engineer at Changejar Technologies since 2024, working on Java and Spring Boot services for a digital gold and silver savings app: autopay and payments, KYC and home screen APIs. Also work in Python and TypeScript services. I care about clear API contracts, careful failure handling and good documentation.',
+  sde2Bullets: [
+    'Build and maintain Java and Spring Boot services for autopay, payments, KYC and the home screen of a digital gold and silver savings app.',
+    'Built the backend for redeeming digital silver as physical coins, and for daily savings and autopay on a second product, silver.',
+    'Designed a server-driven home screen backend with cohort-based caching and per-section metrics.',
+    'Improved the autopay renewal and retry pipeline, and added detection of mandates cancelled outside the app.',
+    'Designed and implemented Spring Boot APIs for homepage aggregation serving 40M+ users, reducing average response time by 10% through optimized queries.',
+    'Work with the Android and iOS teams on API contracts, and write design docs, sequence diagrams and root cause analyses.',
+  ],
+} as const;

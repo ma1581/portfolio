@@ -161,7 +161,7 @@ function drawBack(ctx: CanvasRenderingContext2D, data: CardData): void {
   ctx.textAlign = 'left';
   ctx.fillStyle = C.accent;
   ctx.font = `400 13px ${FONT_MONO}`;
-  ctx.fillText('contact', 32, 74);
+  ctx.fillText('Contact', 32, 74);
 
   ctx.font = `400 17px ${FONT_BODY}`;
   data.backLines.forEach((line, i) => {
