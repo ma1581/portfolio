@@ -17,9 +17,12 @@ import { site } from '../data/profile';
 
 <style>
   .fab {
+    /* sits above Netlify's "Powered by" badge in the bottom-right corner */
+    --fab-right: 24px;
+    --fab-bottom: 84px;
     position: fixed;
-    right: 24px;
-    bottom: 24px;
+    right: var(--fab-right);
+    bottom: var(--fab-bottom);
     z-index: 60;
     display: grid;
     place-items: center;
@@ -115,6 +118,7 @@ import { site } from '../data/profile';
     border-radius: 999px;
     border: 2px solid var(--accent);
     opacity: 0;
+    pointer-events: none;
     animation: fab-ripple 2.6s ease-out infinite;
   }
   .ring.r2 {
@@ -244,8 +248,8 @@ import { site } from '../data/profile';
 
   @media (hover: none), (max-width: 720px) {
     .fab {
-      right: 16px;
-      bottom: 16px;
+      --fab-right: 16px;
+      --fab-bottom: 76px;
     }
     .core {
       height: 50px;
