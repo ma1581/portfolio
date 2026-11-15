@@ -31,7 +31,7 @@ Requires Node 22 or newer.
 ## Notes
 
 - The contact form posts to Formspree. The form endpoint is `site.formEndpoint` in `src/data/profile.ts`.
-- The digital card is `public/Mohammed-Anas.vcf`. Update it together with the contact details in `src/data/profile.ts`. It intentionally has no phone number.
+- The digital visiting card (Contact section) can be downloaded as a PNG (front or back, 1440×840, transparent corners), a two-page print-ready PDF, or a contact file (`public/Mohammed-Anas.vcf`). The PNG and PDF are drawn in the browser by `src/scripts/card-download.ts` from the same data as the on-screen card, so edit the card text in `src/components/Contact.astro` and `src/data/profile.ts`, and the `.vcf` file to match. The card intentionally has no phone number.
 - The sitemap (`/sitemap-index.xml`) is generated at build time.
 - Animations respect the visitor's reduced-motion setting.
 
