@@ -1,24 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import profile from '../assets/profile.jpg';
-import sunsetProfile from '../assets/photos/sunset-profile.jpg';
-import boatSunglasses from '../assets/photos/boat-sunglasses.jpg';
+import portrait from '../assets/profile-portrait.jpg';
 import { about, person } from '../data/profile';
 import SectionHead from './SectionHead.astro';
-
-// Off-the-clock photos shown under the facts. `pos` is the crop focus (CSS object-position).
-const moments = [
-  {
-    src: sunsetProfile,
-    alt: 'Mohammed in a black polo, seen in profile against a hazy sunset on a beach',
-    pos: '50% 42%',
-  },
-  {
-    src: boatSunglasses,
-    alt: 'Mohammed wearing round sunglasses, holding a patterned bucket hat to his chest on a boat',
-    pos: '50% 24%',
-  },
-];
 ---
 
 <section id="about" class="section">
@@ -26,14 +10,13 @@ const moments = [
 
   <div class="about-grid">
     <div class="about-photo reveal">
-      <div class="photo-ring">
-        <span class="ring" aria-hidden="true"></span>
+      <div class="portrait">
+        <span class="frame" aria-hidden="true"></span>
         <Image
-          src={profile}
-          alt={`Portrait of ${person.name}`}
-          width={250}
-          height={250}
-          densities={[1, 2]}
+          src={portrait}
+          alt={`${person.name} in a black polo, seen in profile against a hazy sunset on a beach`}
+          widths={[300, 600, 900]}
+          sizes="300px"
           format="webp"
           quality={82}
           loading="lazy"
@@ -63,25 +46,6 @@ const moments = [
         <dt>Outside work</dt>
         <dd>{person.interests}</dd>
       </dl>
-
-      <div class="moments" role="group" aria-label="Photos from outside work">
-        {
-          moments.map((m) => (
-            <figure>
-              <Image
-                src={m.src}
-                alt={m.alt}
-                style={`object-position: ${m.pos}`}
-                widths={[320, 640, 960]}
-                sizes="(max-width: 720px) 45vw, 400px"
-                format="webp"
-                quality={80}
-                loading="lazy"
-              />
-            </figure>
-          ))
-        }
-      </div>
     </div>
   </div>
 
@@ -122,26 +86,28 @@ const moments = [
     gap: 6px;
     text-align: center;
   }
-  .photo-ring {
+  .portrait {
     position: relative;
-    width: 250px;
-    height: 250px;
-    margin-bottom: 18px;
+    width: 300px;
+    aspect-ratio: 3 / 4;
+    margin-bottom: 22px;
   }
-  .photo-ring :global(img) {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
+  .portrait :global(img) {
+    position: relative;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: 50% 25%;
+    border-radius: 22px;
+    border: 1px solid var(--line-3);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
   }
-  .ring {
+  .frame {
     position: absolute;
     inset: -12px;
-    border-radius: 50%;
+    border-radius: 32px;
     border: 2px dashed var(--accent);
-    opacity: 0.6;
-    animation: spin 18s linear infinite;
+    opacity: 0.55;
+    animation: glowline 4s ease-in-out infinite;
   }
   .photo-name {
     font-family: var(--font-head);
@@ -196,29 +162,6 @@ const moments = [
   }
   .facts dt {
     color: var(--dim);
-  }
-
-  .moments {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-  .moments figure {
-    margin: 0;
-    overflow: hidden;
-    border-radius: 16px;
-    border: 1px solid var(--line);
-    aspect-ratio: 5 / 4;
-    background: var(--panel);
-  }
-  .moments :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s var(--ease);
-  }
-  .moments figure:hover :global(img) {
-    transform: scale(1.05);
   }
 
   .approach {
@@ -306,13 +249,6 @@ const moments = [
     }
     .facts dd {
       margin-bottom: 12px;
-    }
-    .moments {
-      gap: 10px;
-    }
-    .moments figure {
-      border-radius: 12px;
-      aspect-ratio: 4 / 5;
     }
   }
 </style>
