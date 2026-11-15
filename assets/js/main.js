@@ -259,4 +259,37 @@
    */
   new PureCounter();
 
+  /**
+   * Contact form (Formspree, AJAX)
+   */
+  const contactForm = select('.contact-form')
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault()
+      const loading = contactForm.querySelector('.loading')
+      const err = contactForm.querySelector('.error-message')
+      const ok = contactForm.querySelector('.sent-message')
+      loading.classList.add('d-block'); err.classList.remove('d-block'); ok.classList.remove('d-block')
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      }).then(r => {
+        loading.classList.remove('d-block')
+        if (r.ok) { ok.classList.add('d-block'); contactForm.reset() }
+        else { throw new Error() }
+      }).catch(() => {
+        loading.classList.remove('d-block')
+        err.innerHTML = 'Sorry, the message could not be sent. Please email mohammedanas1581@gmail.com directly.'
+        err.classList.add('d-block')
+      })
+    })
+  }
+
+  /**
+   * Footer year
+   */
+  const yearEl = select('#year')
+  if (yearEl) yearEl.textContent = new Date().getFullYear()
+
 })()

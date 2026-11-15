@@ -241,13 +241,12 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
-  background-size: cover;
+  background: radial-gradient(circle at 80% 20%, #1b4f72 0%, #0b2239 45%, #050d18 100%);
 }
 
 #hero:before {
   content: "";
-  background: rgba(5, 13, 24, 0.3);
+  background: rgba(5, 13, 24, 0);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -1104,3 +1103,65 @@ section {
     padding-right: 20px 15px;
   }
 }
+/*--------------------------------------------------------------
+# Portfolio additions
+--------------------------------------------------------------*/
+.hero-cta { margin-top: 30px; }
+.btn-hero {
+  display: inline-block; padding: 10px 28px; margin: 0 6px 10px; border-radius: 50px;
+  background: #149ddd; color: #fff; font-weight: 600; border: 2px solid #149ddd; transition: 0.3s;
+}
+.btn-hero:hover { background: #0f7fb3; border-color: #0f7fb3; color: #fff; }
+.btn-hero.btn-hero-outline { background: transparent; color: #fff; border-color: #fff; }
+.btn-hero.btn-hero-outline:hover { background: #fff; color: #149ddd; }
+
+.about .about-photo { border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12); width: 100%; }
+
+.resume .resume-item p a { color: #149ddd; }
+
+.skill-group {
+  background: #fff; border-radius: 8px; padding: 22px; margin-bottom: 24px; width: 100%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+}
+.skill-group h4 { font-size: 18px; font-weight: 700; color: #173b6c; margin-bottom: 14px; }
+.skill-group h4 i { color: #149ddd; margin-right: 6px; }
+.tag {
+  display: inline-block; padding: 4px 12px; margin: 0 6px 8px 0; border-radius: 50px;
+  background: #e6f5fc; color: #0f7fb3; font-size: 14px; font-weight: 600;
+}
+
+.project-card {
+  position: relative; width: 100%; background: #fff; border-radius: 8px; padding: 28px; margin-bottom: 30px;
+  border-top: 4px solid #149ddd; box-shadow: 0 0 25px rgba(0, 0, 0, 0.08); transition: transform 0.3s;
+}
+.project-card:hover { transform: translateY(-4px); }
+.project-card h4 { font-size: 20px; font-weight: 700; color: #173b6c; }
+.project-card h4 i { color: #149ddd; margin-right: 6px; }
+.project-card .project-year { position: absolute; top: 18px; right: 22px; color: #728394; font-weight: 600; }
+.project-card ul { padding-left: 18px; }
+.project-card .project-stack { margin: 14px 0; }
+.project-card .project-link { font-weight: 600; }
+
+.cert-card {
+  display: flex; align-items: center; width: 100%; background: #fff; border-radius: 8px; padding: 20px 24px;
+  margin-bottom: 24px; color: #272829; box-shadow: 0 0 25px rgba(0, 0, 0, 0.08); transition: 0.3s;
+}
+.cert-card:hover { transform: translateY(-3px); color: #149ddd; }
+.cert-card > i { font-size: 36px; color: #149ddd; margin-right: 18px; }
+.cert-card h4 { font-size: 17px; font-weight: 700; margin: 0 0 4px; }
+.cert-card p { margin: 0; font-size: 14px; color: #728394; }
+
+.contact .info .email p a, .contact .info .phone p a { color: inherit; }
+.contact .contact-form { width: 100%; }
+.contact .contact-form .form-group { margin-bottom: 20px; }
+.contact .contact-form label { padding-bottom: 8px; }
+.contact .contact-form .error-message { display: none; color: #fff; background: #ed3c0d; text-align: left; padding: 15px; font-weight: 600; }
+.contact .contact-form .sent-message { display: none; color: #fff; background: #18d26e; text-align: center; padding: 15px; font-weight: 600; }
+.contact .contact-form .loading { display: none; background: #fff; text-align: center; padding: 15px; }
+.contact .contact-form .d-block { display: block !important; }
+.contact .contact-form input, .contact .contact-form textarea { border-radius: 0; box-shadow: none; font-size: 14px; }
+.contact .contact-form input:focus, .contact .contact-form textarea:focus { border-color: #149ddd; }
+.contact .contact-form button[type=submit] {
+  background: #149ddd; border: 0; padding: 10px 35px; color: #fff; transition: 0.4s; border-radius: 50px;
+}
+.contact .contact-form button[type=submit]:hover { background: #37b3ed; }
