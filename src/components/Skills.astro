@@ -1,0 +1,74 @@
+---
+import { skillCategories, skills } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="skills" class="section section-line">
+  <SectionHead label="04 / Skills" title="Technical skills" sub="Filter by area." />
+
+  <div class="filters reveal" role="group" aria-label="Filter skills">
+    <button class="filter is-on" type="button" data-filter="all" aria-pressed="true">All</button>
+    {
+      skillCategories.map((c) => (
+        <button class="filter" type="button" data-filter={c.id} aria-pressed="false">
+          {c.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <ul class="chips reveal">
+    {skills.map((s) => <li class="chip" data-cat={s.cat}>{s.name}</li>)}
+  </ul>
+</section>
+
+<style>
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .filter {
+    min-height: 44px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--line-2);
+    background: transparent;
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .filter:hover {
+    border-color: var(--accent);
+  }
+  .filter.is-on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+  }
+  .chip {
+    border: 1px solid var(--line-2);
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 12px 18px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  .chip:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 0 22px rgba(94, 234, 212, 0.28);
+  }
+  .chip[hidden] {
+    display: none;
+  }
+</style>

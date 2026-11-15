@@ -1,0 +1,94 @@
+---
+import { certifications, education } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="education" class="section section-line">
+  <SectionHead label="05 / Education" title="Education & certifications" />
+
+  <div class="card tilt reveal degree">
+    <div>
+      <p class="meta">{education.period}</p>
+      <h3>{education.degree}</h3>
+      <p class="school">{education.school}</p>
+    </div>
+    <a class="link-arrow" href={education.certificateUrl} target="_blank" rel="noopener">View degree certificate →</a>
+  </div>
+
+  <p class="sublabel">Certifications</p>
+  <div class="cards-2">
+    {
+      certifications.map((c) => (
+        <a class="card tilt reveal cert" href={c.href} target="_blank" rel="noopener">
+          <span class="cert-issuer">{c.issuer}</span>
+          <span class="cert-title">{c.title}</span>
+          <span class="cert-meta">{c.meta}</span>
+          <span class="link-arrow">View certificate →</span>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .degree {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .degree h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 26px;
+    margin: 8px 0;
+  }
+  .school {
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .degree .link-arrow {
+    white-space: nowrap;
+  }
+  .cards-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .cert:hover {
+    text-decoration: none;
+  }
+  .cert-issuer {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .cert-title {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  .cert-meta {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .cert .link-arrow {
+    margin-top: 4px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 720px) {
+    .degree {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .degree h3 {
+      font-size: 21px;
+    }
+    .cards-2 {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

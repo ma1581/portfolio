@@ -1,0 +1,253 @@
+---
+import { Image } from 'astro:assets';
+import profile from '../assets/profile.jpg';
+import { about, person } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="about" class="section">
+  <SectionHead label="01 / About" title={about.heading} />
+
+  <div class="about-grid">
+    <div class="about-photo reveal">
+      <div class="photo-ring">
+        <span class="ring" aria-hidden="true"></span>
+        <Image
+          src={profile}
+          alt={`Portrait of ${person.name}`}
+          width={250}
+          height={250}
+          densities={[1, 2]}
+          format="webp"
+          quality={82}
+          loading="lazy"
+        />
+      </div>
+      <p class="photo-name">{person.name}</p>
+      <p class="photo-loc">{person.city}, {person.region}</p>
+    </div>
+
+    <div class="about-copy reveal">
+      <p class="about-lead">{about.lead}</p>
+
+      <div class="stats">
+        {
+          about.stats.map((stat) => (
+            <div class="stat tilt">
+              <span class="stat-num"><span data-count={stat.value}>{stat.value}</span>{stat.suffix}</span>
+              <span class="stat-text">{stat.text}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <dl class="facts">
+        <dt>Languages</dt>
+        <dd>{person.languages.join(', ')}</dd>
+        <dt>Outside work</dt>
+        <dd>{person.interests}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="approach reveal">
+    <p class="sublabel">{about.approachLabel}</p>
+    <ol class="steps">
+      {
+        about.steps.map((step, i) => (
+          <>
+            <li class="step" style={`--i:${i}`}>
+              <span class="step-n">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+            {i < about.steps.length - 1 && (
+              <li class="lane" aria-hidden="true">
+                <span class="packet" style={`--d:${i * 0.5}s`} />
+              </li>
+            )}
+          </>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    column-gap: 80px;
+    align-items: start;
+  }
+  .about-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+  .photo-ring {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 18px;
+  }
+  .photo-ring :global(img) {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 25%;
+  }
+  .ring {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 2px dashed var(--accent);
+    opacity: 0.6;
+    animation: spin 18s linear infinite;
+  }
+  .photo-name {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .photo-loc {
+    font-size: 15px;
+    color: var(--dim);
+  }
+  .about-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .about-lead {
+    font-size: 20px;
+    line-height: 1.7;
+    color: var(--text-2);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .stat {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .stat-num {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(44px, 4.4vw, 64px);
+    line-height: 1;
+    color: var(--accent);
+  }
+  .stat-text {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    row-gap: 14px;
+    font-size: 16px;
+  }
+  .facts dt {
+    color: var(--dim);
+  }
+
+  .approach {
+    margin-top: 96px;
+  }
+  .steps {
+    display: flex;
+    align-items: stretch;
+  }
+  .step {
+    flex: 1 1 0;
+    background: var(--panel);
+    border: 1px solid var(--line-3);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    animation: stepglow 6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 1.5s);
+  }
+  .step-n {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .step h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .step p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .lane {
+    position: relative;
+    flex: 0 0 64px;
+    align-self: center;
+    height: 2px;
+    background: var(--line);
+  }
+  .packet {
+    position: absolute;
+    top: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px 3px rgba(94, 234, 212, 0.7);
+    animation: packet 2.2s linear infinite;
+    animation-delay: var(--d, 0s);
+  }
+
+  @media (max-width: 1180px) {
+    .about-grid {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 48px;
+    }
+    .steps {
+      flex-direction: column;
+    }
+    .lane {
+      flex: 0 0 40px;
+      width: 2px;
+      height: 40px;
+    }
+    .packet {
+      top: auto;
+      left: -4px;
+      animation-name: packet-v;
+    }
+  }
+  @media (max-width: 720px) {
+    .about-lead {
+      font-size: 17px;
+    }
+    .stats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .facts {
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 4px;
+    }
+    .facts dd {
+      margin-bottom: 12px;
+    }
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+import { experience } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="experience" class="section section-line">
+  <SectionHead label="02 / Experience" title="Where I've worked" sub="Open a role to see what I built and fixed there." />
+
+  <div class="acc reveal">
+    {
+      experience.map((role) => (
+        <div class:list={['acc-item', { 'is-open': role.open }]}>
+          <h3>
+            <button class="acc-btn" type="button" aria-expanded={role.open ? 'true' : 'false'} aria-controls={`exp-${role.id}`}>
+              <span class="acc-title">{role.title}</span>
+              <span class="acc-meta">{role.meta}</span>
+              <span class="acc-icon" aria-hidden="true" />
+            </button>
+          </h3>
+          <div class:list={['acc-panel', { 'is-open': role.open }]} id={`exp-${role.id}`}>
+            <div class="acc-inner">
+              <ul class="bullets">
+                {role.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .acc {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .acc-item {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: border-color 0.3s;
+  }
+  .acc-item.is-open {
+    border-color: #1b5e58;
+  }
+  .acc-btn {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    column-gap: 24px;
+    align-items: center;
+    padding: 26px 32px;
+    background: none;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+  }
+  .acc-title {
+    grid-column: 1;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .acc-meta {
+    grid-column: 1;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 6px;
+  }
+  .acc-icon {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: relative;
+    width: 44px;
+    height: 44px;
+  }
+  .acc-icon::before,
+  .acc-icon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 2px;
+    margin: -1px 0 0 -9px;
+    background: var(--accent);
+    transition: transform 0.35s var(--ease);
+  }
+  .acc-icon::after {
+    transform: rotate(90deg);
+  }
+  .acc-item.is-open .acc-icon::after {
+    transform: rotate(0deg);
+  }
+  .acc-inner {
+    padding: 0 32px;
+  }
+  .acc-item.is-open .acc-inner {
+    padding-bottom: 30px;
+  }
+
+  @media (max-width: 720px) {
+    .acc-btn {
+      padding: 20px;
+      column-gap: 12px;
+    }
+    .acc-title {
+      font-size: 19px;
+    }
+    .acc-inner {
+      padding: 0 20px;
+    }
+    .acc-item.is-open .acc-inner {
+      padding-bottom: 22px;
+    }
+  }
+</style>
