@@ -17,7 +17,7 @@ export const site = {
 export const person = {
   name: 'Mohammed Anas',
   title: 'Backend Engineer',
-  level: 'SDE - II',
+  level: 'SDE II',
   company: 'Changejar Technologies',
   companyUrl: 'https://www.linkedin.com/company/jarapp/',
   city: 'Bengaluru',
@@ -33,14 +33,14 @@ export const person = {
 } as const;
 
 export const hero = {
-  lead: 'Backend Engineer (SDE - II) at Changejar Technologies, working on Java and Spring Boot services for a digital gold and silver savings app.',
+  lead: 'Backend Engineer (SDE II) at Changejar Technologies, working on Java and Spring Boot services for a digital gold and silver savings app.',
   /** Phrases that rotate after "I build". */
   roles: ['Spring Boot services', 'payments and autopay flows', 'Kafka consumers', 'REST APIs'],
   terminal: [
     { cmd: 'whoami', out: 'Mohammed Anas · Backend Engineer' },
     { cmd: 'pwd', out: 'Bengaluru, Karnataka, India' },
     { cmd: 'cat stack.txt', out: 'Java · Spring Boot · Kafka · MongoDB · PostgreSQL' },
-    { cmd: 'cat focus.txt', out: 'payments · autopay · KYC · home screen APIs' },
+    { cmd: 'cat focus.txt', out: 'Payments, autopay, KYC and home screen APIs' },
     { cmd: 'echo $COMPANY', out: 'Changejar Technologies' },
   ],
 } as const;
@@ -49,8 +49,8 @@ export const about = {
   heading: "Hi, I'm Mohammed",
   lead: "I'm a backend engineer at Changejar Technologies, where I work on a digital gold and silver savings app: autopay and payments, KYC, and the services behind the home screen. I mostly write Java and Spring Boot, and I also work in Python and TypeScript services. I like clear API contracts, careful handling of failures and retries, and writing things down: design docs, sequence diagrams and root cause analyses.",
   stats: [
-    { value: 40, suffix: 'M+', text: 'users reached by the homepage APIs I worked on' },
-    { value: 200, suffix: '+', text: 'features and fixes released to production' },
+    { value: 40, suffix: 'M+', text: 'Users reached by the homepage APIs I worked on' },
+    { value: 2, suffix: '+', text: 'Years building backend services in production' },
   ],
 } as const;
 
@@ -70,8 +70,8 @@ export interface Role {
 export const experience: readonly Role[] = [
   {
     id: 'sde2',
-    title: 'SDE - II · Changejar Technologies',
-    meta: 'Bengaluru, Karnataka · Oct 2024 – Present · promoted from SDE - I',
+    title: 'SDE II · Changejar Technologies',
+    meta: 'Bengaluru, Karnataka · Oct 2024 – Present',
     groups: [
       {
         bullets: [
@@ -87,8 +87,8 @@ export const experience: readonly Role[] = [
   },
   {
     id: 'intern',
-    title: 'Backend Developer Intern',
-    meta: 'Mar 2024 – Sep 2024',
+    title: 'Backend Developer Intern · Changejar Technologies',
+    meta: 'Bengaluru, Karnataka · Mar 2024 – Sep 2024',
     groups: [
       {
         bullets: [
@@ -122,28 +122,28 @@ export const projects: readonly Project[] = [
   {
     id: 'silver-delivery',
     group: 'work',
-    title: 'Physical silver coin delivery',
+    title: 'Physical Silver Coin Delivery',
     blurb: 'Backend for redeeming digital silver as physical coins.',
     stack: 'Java · Spring Boot · NestJS · PostgreSQL · SQS',
   },
   {
     id: 'silver-savings',
     group: 'work',
-    title: 'Silver daily savings and autopay',
+    title: 'Silver Daily Savings and Autopay',
     blurb: 'Daily savings and autopay for a new product, built on the existing gold stack.',
     stack: 'Java · Spring Boot · Kafka · MongoDB',
   },
   {
     id: 'home-screen',
     group: 'work',
-    title: 'Server-driven home screen',
+    title: 'Server-Driven Home Screen',
     blurb: 'A card-based home screen backend that personalises by user cohort.',
     stack: 'Java · Spring Boot · Spring Cloud Config · Prometheus',
   },
   {
     id: 'autopay-reliability',
     group: 'work',
-    title: 'Autopay reliability',
+    title: 'Autopay Reliability',
     blurb: 'Retries, cancellations and status handling for recurring savings payments.',
     stack: 'Java · Spring Boot · Kafka · AWS S3 · Python',
   },
